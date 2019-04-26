@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SecondActivity">
+
+    <RadioGroup
+        android:id="@+id/radioGroupDays"
+        android:layout_width="137dp"
+        android:layout_height="215dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="150dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/radioButton7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/android_green"
+            android:checked="true"
+            android:text="None"
+            tools:layout_conversion_absoluteHeight="31dp"
+            tools:layout_conversion_absoluteWidth="100dp"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="150dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/android_green"
+            android:text="Monday"
+            tools:layout_conversion_absoluteHeight="32dp"
+            tools:layout_conversion_absoluteWidth="97dp"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="181dp" />
+
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/android_green"
+            android:text="Tuesday"
+            tools:layout_conversion_absoluteHeight="32dp"
+            tools:layout_conversion_absoluteWidth="98dp"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="213dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/android_green"
+            android:text="Wednesday"
+            tools:layout_conversion_absoluteHeight="32dp"
+            tools:layout_conversion_absoluteWidth="106dp"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="245dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/android_green"
+            android:text="Thursday"
+            tools:layout_conversion_absoluteHeight="32dp"
+            tools:layout_conversion_absoluteWidth="104dp"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="277dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton6"
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/android_green"
+            android:text="Friday"
+            tools:layout_conversion_absoluteHeight="31dp"
+            tools:layout_conversion_absoluteWidth="100dp"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="309dp" />
+
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="285dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/android_green"
+        android:ems="10"
+        android:hint="Enter your searching data here "
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="307dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="88dp"
+        android:text="Choose only one variant in each section below."
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="194sp"
+        android:layout_marginLeft="192dp"
+        android:layout_marginTop="124dp"
+        android:text="Search by:"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="124dp"
+        android:text="Search by:"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupInfo"
+        android:layout_width="183dp"
+        android:layout_height="135dp"
+
+        android:layout_marginStart="276sp"
+        android:layout_marginLeft="276sp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="15sp"
+        android:layout_marginRight="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.719"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/radioButton10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/android_green"
+            android:checked="true"
+            android:text="None"
+
+            tools:layout_editor_absoluteX="275sp"
+            tools:layout_editor_absoluteY="161sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/android_green"
+            android:text="Teacher surname"
+            tools:layout_editor_absoluteX="275dp"
+            tools:layout_editor_absoluteY="161dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/android_green"
+            android:text="Number of audience"
+            tools:layout_editor_absoluteX="275dp"
+            tools:layout_editor_absoluteY="161dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/android_green"
+            android:text="Name of lesson"
+            tools:layout_editor_absoluteX="275dp"
+            tools:layout_editor_absoluteY="161dp" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/search"
+        android:layout_width="225dp"
+        android:layout_height="60sp"
+        android:layout_marginStart="69dp"
+        android:layout_marginLeft="69dp"
+        android:layout_marginTop="383dp"
+        android:background="@color/android_green"
+        android:text="Search"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
+
+</android.support.constraint.ConstraintLayout>
