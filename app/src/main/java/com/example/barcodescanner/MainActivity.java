@@ -26,6 +26,10 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Calendar;
 
+import static com.example.barcodescanner.SecondActivity.AUDIENCE_NUMBER;
+import static com.example.barcodescanner.SecondActivity.LESSON_NAME;
+import static com.example.barcodescanner.SecondActivity.TEACHER_SURNAME;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,12 +40,18 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     BarcodeDetector barcodeDetector;
     BottomNavigationItemView button_home;
+    private Intent toResponse;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        toResponse = new Intent(MainActivity.this,ScrollingActivity.class);
+        toResponse.putExtra(TEACHER_SURNAME, "");
+        toResponse.putExtra(LESSON_NAME, "");
+        toResponse.putExtra(AUDIENCE_NUMBER, "");
+        toResponse.putExtra("dayOfTheWeek", "");
         surfaceView = (SurfaceView) findViewById(R.id.camerapreview);
         textView = (TextView) findViewById(R.id.textView);
         button_home =(BottomNavigationItemView) findViewById(R.id.navigation_home);
@@ -111,7 +121,16 @@ public class MainActivity extends AppCompatActivity {
 //                            Calendar calendar = Calendar.getInstance();
 //                            String format = DateFormat.getDateInstance(DateFormat.DAY_OF_WEEK_FIELD).format(calendar.getTime());
                             String string = qrCodes.valueAt(0).displayValue;
-                            textView.setText(string);
+//                            textView.setText(string);
+                            String daysArray[] = {"Sunday","Monday","Tuesday", "Wednesday","Thursday","Friday", "Saturday"};
+
+                            Calendar calendar = Calendar.getInstance();
+                            int day = calendar.get(Calendar.DAY_OF_WEEK);
+                            String dayOfTheWeek = daysArray[day];
+                            toResponse.putExtra("dayOfTheWeek",dayOfTheWeek);
+                            toResponse.putExtra(AUDIENCE_NUMBER,string);
+                            startActivity(toResponse);
+
 //                            Intent intent = new Intent(MainActivity.this, Sub_Activity.class);
 //                            startActivity(intent);
 

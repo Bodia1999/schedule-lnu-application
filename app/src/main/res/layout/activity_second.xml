@@ -5,7 +5,8 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecondActivity">
+    tools:context=".SecondActivity"
+    tools:layout_editor_absoluteY="81dp">
 
     <RadioGroup
         android:id="@+id/radioGroupDays"
@@ -89,7 +90,7 @@
     </RadioGroup>
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/enterData"
         android:layout_width="285dp"
         android:layout_height="43dp"
         android:layout_marginStart="36dp"
