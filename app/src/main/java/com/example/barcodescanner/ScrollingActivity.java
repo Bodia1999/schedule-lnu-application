@@ -8,6 +8,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -21,6 +24,7 @@ import static com.example.barcodescanner.SecondActivity.TEACHER_SURNAME;
 public class ScrollingActivity extends AppCompatActivity {
     BottomNavigationItemView bottomNavigationItemView;
     FloatingActionButton floatingActionButton;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,16 +32,17 @@ public class ScrollingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scrolling);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        textView = (TextView) findViewById(R.id.responseScrolling);
 
         String teacherSurname = getIntent().getStringExtra(TEACHER_SURNAME);
-        System.out.println("Teacher "+teacherSurname);
+        System.out.println("Teacher " + teacherSurname);
         String lessonName = getIntent().getStringExtra(LESSON_NAME);
-        System.out.println("Lesson "+lessonName);
+        System.out.println("Lesson " + lessonName);
         String audienceNumber = getIntent().getStringExtra(AUDIENCE_NUMBER);
-        System.out.println("Audience "+audienceNumber);
+        System.out.println("Audience " + audienceNumber);
         String dayOfTheWeek = getIntent().getStringExtra("dayOfTheWeek");
-        System.out.println("Day "+dayOfTheWeek);
-        RequestBody requestBody = new RequestBody(audienceNumber,teacherSurname,dayOfTheWeek,lessonName);
+        System.out.println("Day " + dayOfTheWeek);
+        RequestBody requestBody = new RequestBody(audienceNumber, teacherSurname, dayOfTheWeek, lessonName);
         NetworkService.getInstance().
                 getJSONApi()
                 .getPostWithValues(requestBody).enqueue(new Callback<List<Post>>() {
@@ -45,18 +50,28 @@ public class ScrollingActivity extends AppCompatActivity {
             public void onResponse(Call<List<Post>> call, retrofit2.Response<List<Post>> response) {
                 List<Post> body = response.body();
                 for (Post post : body) {
-//                    textView = (TextView) findViewById(R.id.name);
-//                    TextView teacherName = (TextView) findViewById(R.id.teacherName);
-//                    TextView startTime = (TextView) findViewById(R.id.startTime);
-//                    TextView endTime = (TextView) findViewById(R.id.endTime);
+                    TimeResponse timeResponse = post.getTimeResponse();
+                    TeacherResponse teacherResponse = post.getTeacherResponse();
+                    AudienceResponse audienceResponse = post.getAudienceResponse();
+                    List<LessonToGroupResponse> lessonToGroupResponses = post.getLessonToGroupResponses();
+                    String name = post.getName();
+                    textView.append("\n\n");
+                    textView.append("\nAudience: "+audienceResponse.getAudienceNumber()+" "+audienceResponse.getAudienceAddress() );
+                    textView.append("\n" + timeResponse.getDayOfWeek()+"\t\t\t\t\t");
+                    textView.append(name);
+                    textView.append("\n"+timeResponse.getStartTime()+"\t\t\t\t\t");
+                    textView.append(teacherResponse.getSurname()+" "+teacherResponse.getName()+" "+teacherResponse.getPatronymic());
+                    textView.append("\n"+timeResponse.getEndTime()+"\t\t\t\t\t");
+                    textView.append("Groups: ");
 
-//                    textView.setText(post.getName());
-//                    teacherName.setText(post.getTeacherResponse().getSurname() + " " + post.getTeacherResponse().getName() + " " + post.getTeacherResponse().getPatronymic());
-//                    startTime.setText(post.getTimeResponse().getStartTime());
-//                    endTime.setText(post.getTimeResponse().getEndTime());
-                    System.out.println(post.getName());
-                    System.out.println(post.getTimeResponse().getDayOfWeek());
-                    System.out.println(post.getTeacherResponse().getSurname());
+                    for (LessonToGroupResponse lessonToGroupRespons : lessonToGroupResponses) {
+                        textView.append(lessonToGroupRespons.getGroupResponse().getName()+" ");
+
+                    }
+                    textView.append("\n\n");
+//                    textView.append(post.getName());
+//                    System.out.println(post.getTimeResponse().getDayOfWeek());
+//                    System.out.println(post.getTeacherResponse().getSurname());
                 }
             }
 

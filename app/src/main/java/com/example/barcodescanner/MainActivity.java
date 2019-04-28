@@ -47,18 +47,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toResponse = new Intent(MainActivity.this,ScrollingActivity.class);
+        toResponse = new Intent(MainActivity.this, ScrollingActivity.class);
         toResponse.putExtra(TEACHER_SURNAME, "");
         toResponse.putExtra(LESSON_NAME, "");
         toResponse.putExtra(AUDIENCE_NUMBER, "");
         toResponse.putExtra("dayOfTheWeek", "");
+        String daysArray[] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+        String dayOfTheWeek = daysArray[day];
         surfaceView = (SurfaceView) findViewById(R.id.camerapreview);
         textView = (TextView) findViewById(R.id.textView);
-        button_home =(BottomNavigationItemView) findViewById(R.id.navigation_home);
+        button_home = (BottomNavigationItemView) findViewById(R.id.navigation_home);
         button_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 startActivity(intent);
             }
         });
@@ -77,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(MainActivity.this, permissions, REQUEST_CODE);
 //                    return;
+
                 }
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
 //                    ActivityCompat.requestPermissions(MainActivity.this, permissions, REQUEST_CODE);
@@ -116,23 +122,19 @@ public class MainActivity extends AppCompatActivity {
                     textView.post(new Runnable() {
                         @Override
                         public void run() {
+
+
 //                            Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
 //                            vibrator.vibrate(100);
 //                            Calendar calendar = Calendar.getInstance();
 //                            String format = DateFormat.getDateInstance(DateFormat.DAY_OF_WEEK_FIELD).format(calendar.getTime());
-                            String string = qrCodes.valueAt(0).displayValue;
+                            String valueFromQR = qrCodes.valueAt(0).displayValue;
 //                            textView.setText(string);
-                            String daysArray[] = {"Sunday","Monday","Tuesday", "Wednesday","Thursday","Friday", "Saturday"};
 
-                            Calendar calendar = Calendar.getInstance();
-                            int day = calendar.get(Calendar.DAY_OF_WEEK);
-                            String dayOfTheWeek = daysArray[day];
-                            toResponse.putExtra("dayOfTheWeek",dayOfTheWeek);
-                            toResponse.putExtra(AUDIENCE_NUMBER,string);
+                            toResponse.putExtra("dayOfTheWeek", dayOfTheWeek);
+                            toResponse.putExtra(AUDIENCE_NUMBER, valueFromQR);
                             startActivity(toResponse);
 
-//                            Intent intent = new Intent(MainActivity.this, Sub_Activity.class);
-//                            startActivity(intent);
 
                         }
                     });
