@@ -26,8 +26,11 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import static com.example.barcodescanner.activity.SecondActivity.AUDIENCE_NUMBER;
 import static com.example.barcodescanner.activity.SecondActivity.LESSON_NAME;
@@ -135,8 +138,12 @@ public class MainActivity extends AppCompatActivity {
 //                            String format = DateFormat.getDateInstance(DateFormat.DAY_OF_WEEK_FIELD).format(calendar.getTime());
                             String valueFromQR = qrCodes.valueAt(0).displayValue;
 //                            textView.setText(string);
-
-                            toResponse.putExtra("dayOfTheWeek", dayOfTheWeek);
+//                            System.out.println(dayOfTheWeek);
+                            Calendar calendar1 = Calendar.getInstance();
+                            Date date = calendar1.getTime();
+                            String eeee = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date.getTime());
+                            System.out.println(eeee);
+                            toResponse.putExtra("dayOfTheWeek", eeee);
                             toResponse.putExtra(AUDIENCE_NUMBER, valueFromQR);
                             startActivity(toResponse);
 
