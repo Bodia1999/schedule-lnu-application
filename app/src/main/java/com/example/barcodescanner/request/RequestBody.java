@@ -1,4 +1,4 @@
-package com.example.barcodescanner;
+package com.example.barcodescanner.request;
 
 public class RequestBody {
     private String audienceNumber;

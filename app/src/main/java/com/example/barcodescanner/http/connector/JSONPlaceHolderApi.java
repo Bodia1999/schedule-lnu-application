@@ -1,4 +1,7 @@
-package com.example.barcodescanner;
+package com.example.barcodescanner.http.connector;
+
+import com.example.barcodescanner.request.RequestBody;
+import com.example.barcodescanner.response.Post;
 
 import java.util.List;
 

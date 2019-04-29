@@ -1,40 +1,43 @@
-package com.example.barcodescanner;
+package com.example.barcodescanner.activity;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Camera;
-import android.os.Vibrator;
+import android.graphics.Point;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseArray;
+import android.view.Display;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.example.barcodescanner.R;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.List;
 
-import static com.example.barcodescanner.SecondActivity.AUDIENCE_NUMBER;
-import static com.example.barcodescanner.SecondActivity.LESSON_NAME;
-import static com.example.barcodescanner.SecondActivity.TEACHER_SURNAME;
+import static com.example.barcodescanner.activity.SecondActivity.AUDIENCE_NUMBER;
+import static com.example.barcodescanner.activity.SecondActivity.LESSON_NAME;
+import static com.example.barcodescanner.activity.SecondActivity.TEACHER_SURNAME;
 
 
 public class MainActivity extends AppCompatActivity {
 
     public static int REQUEST_CODE = 1561;
-
+    Camera camera;
     SurfaceView surfaceView;
     CameraSource cameraSource;
     TextView textView;
@@ -99,7 +102,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
+                int displayHeight = getDisplayHeight(getApplicationContext());
+                int displayWidth = getDisplayWidth(getApplicationContext());
+                holder.setFixedSize(displayWidth, displayHeight);
             }
 
             @Override
@@ -141,6 +146,42 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private Point computePreviewSize(int pictureWidth, int pictureHeight,
+                                     int screenWidth, int screenHeight){
+        int resultWidth;
+        int resultHeight;
+
+        double widthRatio = pictureWidth / (double) screenWidth;
+        double heightRatio = pictureHeight / (double) screenHeight;
+
+        if(widthRatio > heightRatio){
+            resultWidth = screenWidth;
+            resultHeight = (int) (pictureHeight / widthRatio);
+        }
+        else{
+            resultWidth = (int) (pictureWidth / heightRatio);
+            resultHeight = screenHeight;
+        }
+
+        return new Point(resultWidth, resultHeight);
+    }
+
+    public static int getDisplayWidth(Context context) {
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        int width = display.getWidth();
+
+        return width;
+    }
+
+    public static int getDisplayHeight(Context context) {
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        int height = display.getHeight();
+
+        return height;
     }
 
 //    private void verifyPermissions() {

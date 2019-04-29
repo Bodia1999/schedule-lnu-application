@@ -1,4 +1,4 @@
-package com.example.barcodescanner;
+package com.example.barcodescanner.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -16,12 +15,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.barcodescanner.R;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
 
 public class SecondActivity extends AppCompatActivity {
     public static final String TEACHER_SURNAME = "teacherSurname";
@@ -113,15 +110,19 @@ public class SecondActivity extends AppCompatActivity {
 
 
         System.out.println("Input data " + inputData);
-        if (!infoFromRadioButton.equals("None") && inputData.equals("")) {
+        if (!infoFromRadioButton.equals("None") && inputData.trim().length()==0) {
             Toast.makeText(getApplicationContext(), "Enter data in field", Toast.LENGTH_LONG).show();
             return;
         }
-        if (!daysFromRadioButton.equals("None")) {
-            intent.putExtra("dayOfTheWeek", daysFromRadioButton);
-        } else {
-            intent.putExtra("daysOfTheWeek", " ");
+        if (inputData.trim().length() > 0 && infoFromRadioButton.equals("None")){
+            Toast.makeText(getApplicationContext(), "Choose by what parameter you want to seek", Toast.LENGTH_LONG).show();
+            return;
         }
+            if (!daysFromRadioButton.equals("None")) {
+                intent.putExtra("dayOfTheWeek", daysFromRadioButton);
+            } else {
+                intent.putExtra("daysOfTheWeek", " ");
+            }
 
         switch (infoFromRadioButton) {
             case "Teacher surname":

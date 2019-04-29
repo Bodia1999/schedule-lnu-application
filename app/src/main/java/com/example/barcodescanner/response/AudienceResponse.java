@@ -1,4 +1,4 @@
-package com.example.barcodescanner;
+package com.example.barcodescanner.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
