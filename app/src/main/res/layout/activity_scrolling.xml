@@ -46,7 +46,7 @@
         app:backgroundTint="@color/red"
         app:layout_anchor="@+id/app_bar"
         app:layout_anchorGravity="end|bottom"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
+        android:focusable="true" app:srcCompat="?attr/actionModeCloseDrawable" />
 
     <!--<android.support.design.widget.FloatingActionButton-->
         <!--android:id="@+id/fab"-->
